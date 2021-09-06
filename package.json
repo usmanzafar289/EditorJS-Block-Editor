@@ -1,0 +1,21 @@
+{
+  "name": "Html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "templatedparagraphscripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@editorjs/editorjs": "^2.22.2",
+    "@editorjs/embed": "^2.4.6",
+    "@editorjs/header": "^2.6.1",
+    "@editorjs/list": "^1.6.2"
+  },
+  "devDependencies": {
+    "@editorjs/image": "^2.6.0"
+  }
+}

@@ -1,0 +1,5 @@
+run npx webpack
+
+modify tools as needed. 
+
+>npm run build:dev in tool folder - needed for simple image

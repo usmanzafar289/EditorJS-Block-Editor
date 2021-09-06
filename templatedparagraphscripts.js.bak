@@ -1,0 +1,148 @@
+/*//operation with editor'js.
+mods to paragraph to allow custom editing of sections
+clicking on an internal field choiceetc, will highlight it, show the menu.
+clicking on a content editable will highlight it, no menu
+
+
+*/
+function msel_clicked(msel) {
+
+    if (msel.getAttribute('data-showing') == 'true') {
+        console.log('showed');
+        return;
+    }
+    msel.setAttribute('data-showing', 'true');
+    var attr = msel.getAttribute('choices');
+    var attrs = attr.split("|");
+
+    var myOptions = [];
+    var i = 0;
+    for (const opt of attrs) {
+        // set option text
+        myOptions[i] = { label: opt, value: opt };
+        i = i + 1;
+    }
+    msel.style.display = 'inline-block';  // undo what we did in afterclose
+
+    VirtualSelect.init({
+   
+        ele: '#' + msel.id,
+        options: myOptions,
+        allowNewOption: true,
+        showDropboxAsPopup: true,
+    });
+
+    msel.addEventListener('afterClose', function () {
+        // reset display to original
+        msel.innerHTML = msel.getDisplayValue();
+        msel.setAttribute('data-showing', 'false');
+        //reset width
+        msel.style.display = 'inline';
+        console.log('not showed');
+    });
+}
+//do nothing if text edit enabled and showing the text normal mode
+function hidespan(img, istextclick) {
+
+    var contnr = img.parentNode;
+     console.log(text);
+    
+        contnr.setAttribute('data-hidden', 'true');
+      var children = contnr.childNodes;
+ 
+	  children.forEach( element =>
+	  {
+		  try {
+			   element.style.textDecoration = 'line-through';
+			  element.style.color = "gray";
+		  } catch {}
+	  });
+
+        img.style.display = "none";
+
+}
+function showspan(element, istextclick) {
+
+    var contnr = element.parentNode;
+ 
+ 
+    var img = contnr.querySelector("img");
+    console.log(img);
+   
+
+      contnr.setAttribute('data-hidden', 'false');
+		
+	  var children = contnr.childNodes;
+ 
+	  children.forEach( element =>
+	  {
+		  try {
+			   element.style.textDecoration = 'none';
+			 if (element.contentEditable)
+				element.style.color = "blue";
+			else
+				element.style.color = "black";
+		  } catch {}
+	  });	
+   
+        img.style.display = "inline";
+    }
+}
+
+
+//for testing only-->
+function getdata(divid) {
+    var ele = document.getElementById(divid);
+    var data = [];
+    data = getdata2(ele, data);
+  // data = data.replace('\n', '').replace('\r', '');
+    return data;
+    //    console.log(data);
+    //    document.getElementById('output').innerHTML = data;
+}
+
+function getdata2(root, data) {
+    //    console.log("ele " + root.tagName);
+    var eles = root.childNodes;
+    if (eles == null) {
+        return;
+    }
+    //  console.log("rtrt" + eles.length);
+    for (var i = 0; i < eles.length; i++) {
+        var ele = eles.item(i);
+        //      console.log("rtrt" + ele);
+        if (ele === null) {
+            //          console.log("rtrt null");
+            continue;
+        }
+        if (typeof (ele.getAttribute === 'function')) {
+            try {
+                var attr = ele.getAttribute('data-hidden')
+                //            console.log(ele.tagName + "hiddeh" + attr);
+                if (ele.getAttribute("data-hidden") === 'true') {
+                    continue;
+                }
+            } catch { }
+        }
+        if (ele.tagName === 'MTEXT') {
+            if (ele.contentEditable || ele.getAttribute('data-save') === 'true')
+			{
+				
+				var itemdata = { id: ele.id, data: ele.innerHTML};
+				data.push(itemdata);
+			}
+
+        }
+        else if (ele.tagName == 'MSELECT' || ele.tagName === 'mfromapp')
+		{
+						
+				var itemdata = { id: ele.id, data: ele.innerHTML};
+				data.push(itemdata);
+
+		}
+        else
+            data = getdata2(ele, data)
+    }
+    return data;
+
+}

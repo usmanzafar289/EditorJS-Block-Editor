@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Editor.js Demo work</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=PT+Mono"
+      rel="stylesheet"
+    />
+    <link href="assets/demo.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/3a1495373b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/json-preview.js"></script>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/timepick.css" rel="stylesheet" />
+    <link rel="stylesheet" href="dist/virtual-select.min.css" />
+    <style>
+      body {
+        /**width: 100vw;
+          height: 100vh;*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      *,
+      *::after,
+      *::before {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ce-example">
+      <div class="ce-example__content _ce-example__content--small">
+        <!--  the editor content -->
+        <div id="editorjs"></div>
+
+        <span class="ce-example__button" id="saveButton"> editor.save() </span>
+        <span class="ce-example__button" id="blockButton">
+          Add Template Block
+        </span>
+        <span class="ce-example__button" id="imageButton"> Add Image </span>
+
+        <span class="ce-example__button" id="fileButton"> Add Attachment </span>
+        <span id="spnFilePath"></span>
+        <span class="ce-example__button" id="paraButton"> Add Parapraph </span>
+
+        <div class="ce-example__statusbar">
+          Readonly:
+          <b id="readonly-state"> Off </b>
+          <div class="ce-example__statusbar-button" id="toggleReadOnlyButton">
+            toggle
+          </div>
+        </div>
+      </div>
+      <!-- <div class="ce-example__output">
+            <pre class="ce-example__output-content" id="output"></pre>
+
+          <div class="ce-example__output-footer">
+                <a href="#" style="font-weight: bold;">Made by Dev</a>
+         </div>
+            
+        </div> -->
+      <div id="jsonData"></div>
+    </div>
+
+    <!-- Load Tools -->
+    <!--
+     You can upload Tools to your project's directory and connect them by relative links.
+
+     Also you can load each Tool from CDN or use NPM/Yarn packages.
+
+     Read more at Tools Connection doc:
+     https://editorjs.io/getting-started#tools-connection
+     -->
+
+    <!--<script src="https://code.jquery.com/git/jquery-git.min.js"></script>-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+    <!-- Image -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
+    <!-- Embed -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script>
+    <!-- Link -->
+
+    <script src="https://unpkg.com/markerjs2/markerjs2.js"></script>
+    <script src="https://ianb.ca/example/tools/attaches/index.js"></script>
+    <!-- Link -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@2.3.0"></script>
+    <script src="https://ianb.ca/example/tools/image/dist/bundle.js"></script><!-- Link -->
+    <script src="tools/simple-image/dist/bundle.js"></script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script><!-- Link -->
+    <!-- Load Editor.js's Core -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    
+
+    <script src="tools/templatedparagraph/src/index.js"></script>
+
+    <script src="js/templatedparagraphscripts.js"></script>
+    <script src="js/contactpersoncomponent.js"></script>
+    <!--<script src="js/config.js"></script>-->
+
+    <script src="dist/virtual-select.min.js"></script>
+    <!-- Initialization -->
+    <script src="help/allMsgs.js"></script>
+    <script src="js/index.js"></script>
+    <script src="json_data/tags.js"></script>
+    
+    <script src="js/datepicker.js"></script>
+
+    <!-- (A) LOAD THE JS for timepicker -->
+
+    <script src="js/timepicker.js"></script>
+
+    <!-- (A) LOAD THE  JS for datetimepicker -->
+    <script src="https://fooloomanzoo.github.io/input-picker-pattern/demo/dist/custom-elements-es5-adapter.js"></script>
+    <!-- Load the external helpers to run the code transpiled to ES5 -->
+    <script src="https://fooloomanzoo.github.io/input-picker-pattern/demo/dist/babel-helpers.min.js"></script>
+    <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
+    <script src="https://fooloomanzoo.github.io/input-picker-pattern/demo/dist/webcomponents-loader.js"></script>
+    <!-- Load bundled dependencies for the demos -->
+    <script src="js/datetime.js"></script>
+  </body>
+</html>

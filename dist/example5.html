@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editor.js 🤩🧦🤨 example</title>
+    <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+    <link href="/demo.117a59a1.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3a1495373b.js" crossorigin="anonymous"></script>
+    <script src="/json-preview.7bfe12d3.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>free-text {
+            color: blue;
+            background-color: lightgray;
+        }
+
+        fixed-text {
+        }
+
+        /*   m-select {
+            color: green;
+            padding-left: 5px;
+            padding-right: 5px;
+        }*/
+
+        /*      .editabledeletabletext {
+            background: beige;
+            color: blue;
+            margin-left: 5px;
+            margin-right: 5px;
+            border-width: 5px;
+        }*/
+        .chooserbutton {
+            color: green;
+            border-radius: 8px;
+            background-color: lightgray;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        .deleteimg {
+            display: inline-block;
+            vertical-align: -9px;
+            border-radius: 8px;
+            padding-top: 0px;
+            margin: 0px 5px;
+        }
+
+        deletable-span {
+            background: beige;
+            padding-top: 5px;
+            border-radius: 8px;
+            margin-left: 5px;
+            padding-bottom: 7px;
+            margin-right: 5px;
+            /* margin-top: 15px; */
+            border: 3px dotted #73AD21;
+            line-height: 50px;
+        }</style>
+<script src="/demo.117a59a1.js"></script><script src="/virtual-select.min.5d7d53e7.js"></script></head>
+<body>
+    <div class="ce-example">
+
+
+        <div class="ce-example__content _ce-example__content--small">
+
+            <!--  the editor content -->
+            <div id="editorjs"></div>
+
+            <span class="ce-example__button" id="saveButton">
+                editor.save()
+            </span>
+            <span class="ce-example__button" id="blockButton">
+                Add Template Block
+            </span>
+            <span class="ce-example__button" id="imageButton">
+                Add Image
+            </span>
+
+            <span class="ce-example__button" id="paraButton">
+                Add Parapraph
+            </span>
+
+            <div class="ce-example__statusbar">
+                Readonly:
+                <b id="readonly-state">
+                    Off
+                </b>
+                <div class="ce-example__statusbar-button" id="toggleReadOnlyButton">
+                    toggle
+                </div>
+            </div>
+        </div>
+        <div class="ce-example__output">
+            <pre class="ce-example__output-content" id="output"></pre>
+
+            <div class="ce-example__output-footer">
+                <a href="https://codex.so" style="font-weight: bold;">Made by CodeX</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Tools -->
+    <!--
+     You can upload Tools to your project's directory and connect them by relative links.
+
+     Also you can load each Tool from CDN or use NPM/Yarn packages.
+
+     Read more at Tools Connection doc:
+     https://editorjs.io/getting-started#tools-connection
+     -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script><!-- Image -->
+    <!--  <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script><!-- Embed -->
+    <!--  <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script><!-- Link -->
+
+    <script src="https://unpkg.com/markerjs2/markerjs2.js"></script>
+    <script src="https://ianb.ca/example/tools/attaches/index.js"></script><!-- Link -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@2.3.0"></script><!-- Link -->
+    <!--  <script src="https://ianb.ca/example/tools/image/dist/bundle.js"></script><!-- Link -->
+    <script src="/bundle.075f548c.js"></script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script><!-- Link -->
+    <!-- Load Editor.js's Core -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+
+    <script src="/src.959d3919.js"></script>
+
+    <script src="/templatedparagraphscripts.436dd7ef.js"></script>
+   
+    <link rel="stylesheet" href="/virtual-select.min.5d7d53e7.css">
+    <script src="/virtual-select.min.32adabba.js"></script>
+    <!-- Initialization -->
+    <script>var _EditorJS;
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/**
+         * To initialize the Editor, create a new instance with configuration object
+         * @see docs/installation.md for mode details
+         */
+var editor = new EditorJS((_EditorJS = {
+  readOnly: false,
+  holder: 'editorjs',
+
+  /**
+   * Common Inline Toolbar settings
+   * - if true (or not specified), the order from 'tool' property will be used
+   * - if an array of tool names, this order will be used
+   */
+  inlineToolbar: ['link', 'marker', 'bold', 'italic']
+}, _defineProperty(_EditorJS, "inlineToolbar", true), _defineProperty(_EditorJS, "tools", {
+  /**
+   * Each Tool is a Plugin. Pass them via 'class' option with necessary settings {@link docs/tools.md}
+    image: {
+      class: ImageTool,
+      config: {
+          endpoints: {
+              byFile: 'http://localhost:8008/uploadFile', // Your backend file uploader endpoint
+              byUrl: 'http://localhost:8008/fetchUrl', // Your endpoint that provides uploading by Url
+          }
+      }
+  },   */
+  image: SimpleImage,
+  templatedparagraph: {
+    class: TemplatedParagraph,
+    config: {}
+  },
+  attaches: {
+    class: AttachesTool,
+    config: {
+      endpoint: 'http://localhost:8008/uploadFile'
+    }
+  }
+}), _defineProperty(_EditorJS, "data", {
+  blocks: [{
+    type: 'paragraph',
+    data: {
+      text: 'Hey. Meet the new Editor. On this page you can see it in action — try to edit this text. Source code of the page contains the example of connection and configuration.'
+    }
+  }, {
+    type: 'templatedparagraph',
+    data: {
+      text: 'templatedparagraph'
+    }
+  }, {
+    type: 'templatedparagraph',
+    data: {
+      text: '<MTEXT>sometext</MTEXT>'
+    }
+  }]
+}), _defineProperty(_EditorJS, "onReady", function onReady() {
+  saveButton.click();
+}), _defineProperty(_EditorJS, "onChange", function onChange(api, block) {
+  console.log('something changed', block);
+}), _EditorJS));
+/**
+ * Saving button
+ */
+
+var saveButton = document.getElementById('saveButton');
+var blockButton = document.getElementById('blockButton');
+var imageButton = document.getElementById('imageButton');
+var paraButton = document.getElementById('paraButton');
+/**
+ * Toggle read-only button
+ */
+
+var toggleReadOnlyButton = document.getElementById('toggleReadOnlyButton');
+var readOnlyIndicator = document.getElementById('readonly-state');
+/**
+ * Saving example
+ */
+
+saveButton.addEventListener('click', function () {
+  editor.save().then(function (savedData) {
+    //   cPreview.show(savedData, document.getElementById("output"));
+    console.log(savedData); //      Native("saveCallback", savedData);
+  }).catch(function (error) {
+    console.error('Saving error', error);
+  });
+});
+var templatedata = {
+  "text": " some text"
+};
+templatedata.text = "\n                        <div>\n                            <free-text>this is a large block of editable text. this is a large block of editable text. this is a large block of editable text. this is a large block of editable text. this is a large block of editable text. this is a large block of editable text. this is a large block of editable text. this is a large block of editable text. this is a large block of editable text. t\nhis is a large block of editable text. this is a large block of editable text. this is a large block of editable text.\nthis is a large block of editable text. </free-text>\n                            <free-text>editable text </free-text>\n                            (fixed text not saved )\n                            (fixed text not saved )\n                            <fixed-text>   (fixed text saved )</fixed-text>\n                            <m-select id=\"aaa\" choices='aaa|bbb|ccc' multiple >multiple choice field </m-select>\n                            fixed text\n                            <m-select id=\"bbb\" onclick='msel_clicked(this)' choices='aaa|bbb|ccc'>choice field </m-select>\n                            <m-select id=\"ccc\" onclick='msel_clicked(this)' choices='aaa|bbb|ccc'>choice field</m-select>\n                            postfix\n                            <p><deletable-span id=d1>\n                                this is a deletable paragraph with some editable text and some fixed text and a deletable word inside the deletable paragraph\n                                  <free-text  placeholder='type something here placeholder'></free-text>\n                                more   deleteable fixed text\n                                    <deletable-span id=d2>A deleteable word</deletable-span>\n                           some extra words here</deletable-span></p>\n</br><choose-date> </choose-date/> <choose-person/></choose-person><choose-vehicle></choose-vehicle> <choose-officer></choose-officer/> <choose-location></choose-location/>\n<p>was clothing removed    <m-select id=\"q1\" choices='Yes|No'>Yes/No</m-select>\n<p><show-if  triggervalue='Yes' triggeron='q1'>What items were removed? <free-text style='width:100px'>type here</free-text></show-if></p>\n<p>Type Yes here to trigger a new field ->   <free-text id='q2'>Test</free-text>\n<p><show-if  triggervalue='Yes' triggeron='q2'>Type more data here <free-text style='width:100px' placeholder='type something here placeholder'></free-text></show-if></p>\n                     </div>\n";
+blockButton.addEventListener('click', function () {
+  //window.alert( editor.blocks, data);
+  var index = editor.blocks.getBlocksCount();
+  editor.blocks.insert("templatedparagraph", templatedata, null, index, true);
+});
+paraButton.addEventListener('click', function () {
+  //window.alert( editor.blocks, data);
+  var index = editor.blocks.getBlocksCount();
+  var text = {
+    "text": "new para"
+  };
+  editor.blocks.insert("paragraph", text, null, index, true);
+});
+imageButton.addEventListener('click', function () {
+  //window.alert( editor.blocks, data);
+  // Native("addAttachment");
+  var index = editor.blocks.getBlocksCount();
+  var text = {
+    "caption": "caption",
+    "url": "http://ianb.ca/Photos/P1000615.JPG"
+  };
+  editor.blocks.insert("image", text, null, index, true);
+});
+
+function addBlock(type, data) {
+  var index = editor.blocks.getBlocksCount();
+  editor.blocks.insert(type, data, null, index, true);
+}
+/**
+ * Toggle read-only example
+ */
+
+
+toggleReadOnlyButton.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+  var readOnlyState;
+  return regeneratorRuntime.wrap(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          _context.next = 2;
+          return editor.readOnly.toggle();
+
+        case 2:
+          readOnlyState = _context.sent;
+          readOnlyIndicator.textContent = readOnlyState ? 'On' : 'Off';
+
+        case 4:
+        case "end":
+          return _context.stop();
+      }
+    }
+  }, _callee);
+})));</script>
+
+</body>
+</html>

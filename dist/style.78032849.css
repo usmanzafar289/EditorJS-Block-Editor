@@ -1,0 +1,205 @@
+.btn{
+    text-align: center;
+    align-items:center;
+    justify-content: center;
+    display: flex;
+    background:rgb(119, 206, 119);
+    padding:.4rem;
+    width:20%;
+    margin:auto;
+    border-radius: 8px;
+    color:white;
+    cursor: pointer;
+}
+.btn:hover{
+    background:rgb(17, 170, 17);
+}
+/* css for editor */
+ /* free-text {
+            color: blue;
+            background-color: lightgray;
+        } */
+        fixed-text {
+        }
+        /*   m-select {
+            color: green;
+            padding-left: 5px;
+            padding-right: 5px;
+        }*/
+
+        /*      .editabledeletabletext {
+            background: beige;
+            color: blue;
+            margin-left: 5px;
+            margin-right: 5px;
+            border-width: 5px;
+        }*/
+        .chooserbutton {
+            color: green;
+            border-radius: 8px;
+            background-color: lightgray;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        .deleteimg {
+            display: inline-block;
+            vertical-align: -9px;
+            border-radius: 8px;
+            padding-top: 0px;
+            margin: 0px 5px;
+        }
+
+        deletable-span {
+            background: beige;
+            padding-top: 5px;
+            border-radius: 8px;
+            margin-left: 5px;
+            padding-bottom: 7px;
+            margin-right: 5px;
+            /* margin-top: 15px; */
+            border: 3px dotted #73AD21;
+            line-height: 50px;
+        }
+
+free-text {
+    color: blue;
+    background-color: lightgray;
+    margin: 5px 5px 5px 0;
+    padding: 5px;
+    border-radius: 2px;
+}
+m-time input{
+	height: 30px;
+    border: #ddd 1px solid;
+    border-radius: 5px;
+	margin-right: 5px;
+}
+fixed-text {
+}
+		/* free-text {
+            color: blue;
+            background-color: lightgray;
+			    margin: 5px;
+        } */
+        fixed-text {
+        }
+        /*   m-select {
+            color: green;
+            padding-left: 5px;
+            padding-right: 5px;
+        }*/
+
+        /*      .editabledeletabletext {
+            background: beige;
+            color: blue;
+            margin-left: 5px;
+            margin-right: 5px;
+            border-width: 5px;
+        }*/
+        .chooserbutton {
+            color: green;
+            border-radius: 8px;
+            background-color: lightgray;
+            padding: 5px;
+            margin: 5px 5px 5px 0;
+			display: inline-block;
+        }
+
+        .deleteimg {
+            display: inline-block;
+            vertical-align: -9px;
+            border-radius: 8px;
+            padding-top: 0px;
+            margin: 0px 5px;
+        }
+
+        deletable-span {
+            background: beige;
+            padding-top: 5px;
+            border-radius: 8px;
+            margin-left: 5px;
+            padding-bottom: 7px;
+            margin-right: 5px;
+            /* margin-top: 15px; */
+            border: 3px dotted #73AD21;
+            line-height: 50px;
+        }   m-select {
+    color: green;
+    padding-left: 5px;
+    padding-right: 5px;
+}*/
+
+/*      .editabledeletabletext {
+    background: beige;
+    color: blue;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 5px;
+}*/
+.chooserbutton {
+    color: green;
+    border-radius: 8px;
+    background-color: lightgray;
+    padding: 5px;
+    margin: 5px;
+}
+
+.deleteimg {
+    display: inline-block;
+    vertical-align: -9px;
+    border-radius: 8px;
+    padding-top: 0px;
+    margin: 0px 5px;
+}
+
+deletable-span {
+    background: beige;
+    padding-top: 5px;
+    border-radius: 8px;
+    margin-left: 0;
+    padding-bottom: 7px;
+    margin-right: 5px;
+    /* margin-top: 15px; */
+    border: 3px dotted #73AD21;
+    line-height: 50px;
+}
+
+.ce-example-border
+{
+    border: 2px dotted #dedede;
+    padding: 10px;
+    border-radius: 5px;
+}
+.showif_parent_p.show_L_shape{
+	position:relative;
+    margin-left: 20px;
+    margin-top: -10px;
+}
+.show_L_shape::before {
+    background-color: grey;
+    bottom: 12px;
+    content: "";
+    height: 15px;
+    left: -15px;
+    position: absolute;
+    width: 2px;
+}
+
+.show_L_shape::after {
+    background-color: grey;
+    bottom: 12px;
+    content: "";
+    height: 2px;
+    left: -15px;
+    position: absolute;
+    width: 12px;
+}
+
+.textbox {
+    /* height: 30px; */
+    /* border: #ddd 1px solid; */
+    padding: 20px 10px; line-height: 28px; 
+}
+
+/*# sourceMappingURL=/style.78032849.css.map */

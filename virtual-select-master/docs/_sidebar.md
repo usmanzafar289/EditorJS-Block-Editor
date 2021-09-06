@@ -1,0 +1,7 @@
+* [Get Started](/?id=get-started)
+* [Properties](properties.md)
+* [Methods](methods.md)
+* [Events](events.md)
+* [Examples](examples.md)
+* [Q&A](https://github.com/{{repo}}/discussions/categories/q-a)
+* [Changelog](https://github.com/{{repo}}/releases)

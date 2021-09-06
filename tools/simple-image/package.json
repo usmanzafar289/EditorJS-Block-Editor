@@ -1,0 +1,40 @@
+{
+  "name": "@editorjs/simple-image",
+  "version": "1.4.0",
+  "keywords": [
+    "codex editor",
+    "tool",
+    "image",
+    "server-less",
+    "editor.js",
+    "editorjs"
+  ],
+  "description": "SimpleImage Tool for Editor.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/editor-js/simple-image.git"
+  },
+  "main": "./dist/bundle.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development --watch"
+  },
+  "author": "CodeX <team@codex.so>",
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^1.0.0",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "markerjs": "^1.8.2"
+  },
+  "bugs": {
+    "url": "https://github.com/editor-js/simple-image/issues"
+  },
+  "homepage": "https://github.com/editor-js/simple-image#readme"
+}
